@@ -1,0 +1,10 @@
+; general
+name = "Context Reaction: Primary Links"
+description = "Adds a reaction to change the primary links menu.  Depends on Context 3."
+package = "Context"
+dependencies[] = context
+core = "6.x"
+; packaging
+version = "6.x-1.0-alpha1"
+core = "6.x"
+project = "context_primary_links"

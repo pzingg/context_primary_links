@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * Implementation of hook_init().
+ */
+function context_primary_links_init() {
+  if ($plugin = context_get_plugin('reaction', 'primary_links')) {
+    $plugin->execute($region);
+  }
+}
+
+
+/**
+ * Notify CTools that we'll be using the plugin API with Context module
+ */
+function context_primary_links_ctools_plugin_api($module, $api) {
+  if ($module == 'context' && $api == 'plugins') {
+    return array('version' => 3);
+  }
+}
+
+/**
+ * CTools plugin API hook for Context
+ */
+function context_primary_links_context_plugins() {
+  $plugins = array();
+  $plugins['context_reaction_primary_links'] = array(
+    'handler' => array(
+      'path' => drupal_get_path('module', 'context_primary_links') .'/plugins',
+      'file' => 'context_reaction_primary_links.inc',
+      'class' => 'context_reaction_primary_links',
+      'parent' => 'context_reaction',
+    ),
+  );
+
+  return $plugins;
+}
+
+/**
+ * Registry hook for conditions & reactions.
+ */
+function context_primary_links_context_registry() {
+  return array(
+    'reactions' => array(
+      'primary_links' => array(
+        'title' => t('Primary links'),
+        'plugin' => 'context_reaction_primary_links',
+      ),
+    ),
+  );
+}
