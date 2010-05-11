@@ -39,14 +39,9 @@ class context_reaction_primary_links extends context_reaction {
     foreach ($contexts as $k => $v) {
       $custom = $v->reactions[$this->plugin]['primary_links'];
       if (!empty($custom)) {
-          drupal_set_message("Setting primary_links to ".$custom." for plugin ".$this->plugin." in context ".$k);
-
           global $conf;
 	  $conf['menu_primary_links_source'] = $custom;
       } 
-      else {
-          drupal_set_message("No primary_links set for plugin ".$this->plugin." in context ".$k);
-      }
     }
   }
 }
